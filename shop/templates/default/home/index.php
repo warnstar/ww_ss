@@ -1,198 +1,1620 @@
-<?php defined('InShopNC') or exit('Access Invalid!');?>
-<link href="<?php echo SHOP_TEMPLATES_URL;?>/css/index.css" rel="stylesheet" type="text/css">
-<script src="<?php echo RESOURCE_SITE_URL;?>/js/waypoints.js"></script>
-<script type="text/javascript" src="<?php echo SHOP_RESOURCE_SITE_URL;?>/js/home_index.js" charset="utf-8"></script>
-<!--[if IE 6]>
-<script type="text/javascript" src="<?php echo RESOURCE_SITE_URL;?>/js/ie6.js" charset="utf-8"></script>
-<![endif]-->
-<style type="text/css">
-.category { display: block !important; }
-</style>
-<div class="clear"></div>
-
-<!-- HomeFocusLayout Begin-->
-<div class="home-focus-layout"> <?php echo $output['web_html']['index_pic'];?>
-  <div class="right-sidebar">
-    <div class="right-panel">
-      <?php if ($_SESSION['is_login']) {?>
-      <div class="loginBox">
-        <div class="exitPanel"> <img src="<?php echo getMemberAvatar($_SESSION['avatar']);?>" alt="" />
-          <div class="message">
-            <p class="name">Hi, <a href="<?php echo urlShop('member','home');?>"><?php echo $_SESSION['member_name'];?></a></p>
-            <p class="logOut qiueExt">[<a href="<?php echo urlShop('login','logout');?>">退出登录</a>]</p>
-          </div>
-          <div class="clear"></div>
-        </div>
-        
-        <!-- 买家信息 -->
-        
-        <div class="txtPanel"> <a href="index.php?act=member_order&state_type=state_new" class="line">
-          <p class="num"><?php echo $output['member_order_info']['order_nopay_count'];?></p>
-          <p class="txt">待付款</p>
-          </a> <a target="_blank" href="index.php?act=member_order&op=index" class="line">
-          <p class="num"><?php echo $output['member_order_info']['order_noreceipt_count'];?></p>
-          <p class="txt">待收货</p>
-          </a> <a target="_blank" href="index.php?act=member_refund&op=index">
-          <p class="num"><?php echo $output['member_order_info']['order_noeval_count'];?></p>
-          <p class="txt">待评价</p>
-          </a> </div>
-      </div>
-      <?php } else {?>
-      <div class="loginBox">
-        <div class="welcomePanel"> <img src="<?php echo getMemberAvatar($_SESSION['avatar']);?>">
-          <p>Hi，欢迎来<?php echo $output['setting_config']['site_name']; ?>，请登录</p>
-        </div>
-        <div class="loginPanel"> <a href="<?php echo urlShop('login','logout');?>" rel="nofollow"> <span class="loginTxt"><img alt="" src="<?php echo SHOP_TEMPLATES_URL;?>/images/u-me.png">登录</span> </a> <a href="index.php?act=login&op=register&ref_url=<?php echo urlencode($output['ref_url']);?>" rel="nofollow"> <span class="reigsterTxt"><img alt="" src="<?php echo SHOP_TEMPLATES_URL;?>/images/u-pencil.png">注册</span> </a> </div>
-      </div>
-      <?php } ?>
-      <div class="securePanel">
-        <li><img alt="买家保障" src="<?php echo SHOP_TEMPLATES_URL;?>/images/u-promise.png">
-          <p>买家保障</p>
-        </li>
-        <li><img alt="商家认证" src="<?php echo SHOP_TEMPLATES_URL;?>/images/u-quality.png">
-          <p>商家认证</p>
-        </li>
-        <li><img alt="安全交易" src="<?php echo SHOP_TEMPLATES_URL;?>/images/u-safe.png">
-          <p>安全交易</p>
-        </li>
-      </div>
-      <div class="panelimg-side">
-        <ul>
-          <li><?php echo loadadv(1049);?></li>
-        </ul>
-      </div>
-      <div class="clear"></div>
-    </div>
-  </div>
-</div>
-<!--HomeFocusLayout End-->
-
-<div class="home-sale-layout wrapper">
-  <div class="left-layout"> <?php echo $output['web_html']['index_sale'];?> </div>
-  <?php if(!empty($output['xianshi_item']) && is_array($output['xianshi_item'])) { ?>
-  <div class="right-sidebar">
-    <div class="title">
-      <h3><?php echo $lang['nc_xianshi'];?></h3>
-    </div>
-    <div id="saleDiscount" class="sale-discount">
-      <ul>
-        <?php foreach($output['xianshi_item'] as $val) { ?>
-        <li>
-          <dl>
-            <dt class="goods-name"><?php echo $val['goods_name']; ?></dt>
-            <dd class="goods-thumb"><a href="<?php echo urlShop('goods','index',array('goods_id'=> $val['goods_id']));?>"> <img src="<?php echo thumb($val, 240);?>"></a></dd>
-            <dd class="goods-price"><?php echo ncPriceFormatForList($val['xianshi_price']); ?> <span class="original"><?php echo ncPriceFormatForList($val['goods_price']);?></span></dd>
-            <dd class="goods-price-discount"><em><?php echo $val['xianshi_discount']; ?></em></dd>
-            <dd class="time-remain" count_down="<?php echo $val['end_time']-TIMESTAMP;?>"><i></i><em time_id="d">0</em><?php echo $lang['text_tian'];?><em time_id="h">0</em><?php echo $lang['text_hour'];?> <em time_id="m">0</em><?php echo $lang['text_minute'];?><em time_id="s">0</em><?php echo $lang['text_second'];?> </dd>
-            <dd class="goods-buy-btn"></dd>
-          </dl>
-        </li>
-        <?php } ?>
+<!------------------->
+<!----banner部分----->
+<!------------------->
+<div class="middle_content">
+  <div class="banner_content">
+    <!--广告-->
+    <div class="top_banner" style="display: block;">
+      <ul class="top_slide" style="position: relative; width: 750px; height: 320px;">
+        <li style="position: absolute; width: 764px; left: 0px; top: 0px; display: none;"><a
+              href="javascript:void(0);" target="_blank"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/cms_01.jpg"></a></li>
+        <li style="position: absolute; width: 764px; left: 0px; top: 0px; display: none;"><a
+              href="javascript:void(0);" target="_blank"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/cms_02.jpg"></a></li>
+        <li style="position: absolute; width: 764px; left: 0px; top: 0px; display: list-item;"><a
+              href="javascript:void(0);" target="_blank"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/cms_03.jpg"></a></li>
+        <li style="position: absolute; width: 764px; left: 0px; top: 0px; display: none;"><a
+              href="javascript:void(0);" target="_blank"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/cms_04.jpg"></a></li>
       </ul>
-    </div>
-  </div>
-  <?php } ?>
-</div>
-<div class="wrapper">
-  <div class="mt10">
-    <div class="mt10"><?php echo loadadv(11,'html');?></div>
-  </div>
-</div>
-<!--StandardLayout Begin--> 
-<?php echo $output['web_html']['index'];?> 
-<!--StandardLayout End--> 
-<!--热门晒单str v3-b12-->
-<div class="comment">
-  <div class="tit">
-    <div class="cmttite"><span>
-      <?php if(!empty($output['goods_evaluate_info']) && is_array($output['goods_evaluate_info'])){?>
-      大家购买了
-      <?php }else{?>
-      招商入驻
-      <?php }?>
-      </span></div>
-    <div class="notice">
-      <h3><a>商城公告</a></h3>
-    </div>
-  </div>
-  <div class="cmtcon">
-    <div class="cmtleft">
-      <div id="con">
+      <!--<a class="prev" href="javascript:void(0)" style="opacity: 0.1; display: none;"></a>
+	  <a class="next" href="javascript:void(0)" style="opacity: 0.1; display: none;"></a>-->
+      <div class="num">
         <ul>
-          <?php if(!empty($output['goods_evaluate_info']) && is_array($output['goods_evaluate_info'])){?>
-          <?php foreach($output['goods_evaluate_info'] as $k=>$v){?>
-          <li>
-            <dl>
-              <dt class="goods-thumb"> <a target="_blank" href="<?php echo urlShop('goods','index',array('goods_id'=> $v['geval_goodsid']));?>"> <img src="<?php echo UPLOAD_SITE_URL;?>/shop/common/loading.gif" rel="lazy" data-url="<?php echo strpos($v['goods_pic'],'http')===0 ? $v['goods_pic']:UPLOAD_SITE_URL."/".ATTACH_GOODS."/".$v['geval_storeid']."/".$v['geval_goodsimage'];?>" title="<?php echo $v['geval_goodsname']; ?>" alt="<?php echo $v['geval_goodsname']; ?>" /> </a> </dt>
-              <dd>
-                <h3><span class="username"> <a target="_blank" href="index.php?act=member_snshome&mid=<?php echo $v['geval_frommemberid'];?>"> <?php echo str_cut($v['geval_frommembername'],2).'***';?> </a> </span> <span class="datetime"> <em> <?php echo @date('m-d',$v['geval_addtime']);?> </em> 购买了</span><span class="star"><i class="v_5"></i></span></h3>
-              </dd>
-              <dd class="goods-name"> <a target="_blank" href="<?php echo urlShop('goods','index',array('goods_id'=> $v['geval_goodsid']));?>" title="<?php echo $v['geval_goodsname']; ?>"> <?php echo $v[ 'geval_goodsname']; ?> </a> </dd>
-            </dl>
-          </li>
-          <?php }?>
-          <?php }else{?>
-          <a target="_blank" title="商家入驻" href="<?php echo urlShop('show_joinin', 'index');?>"> <img width="978" height="248" data-url="<?php echo UPLOAD_SITE_URL;?>/shop/common/i_store_joinio.png" rel="lazy" alt="" src="<?php echo UPLOAD_SITE_URL;?>/shop/common/loading.gif"></a>
-          <?php }?>
+          <li class=""></li>
+          <li class=""></li>
+          <li class="on"></li>
+          <li class=""></li>
         </ul>
       </div>
     </div>
-    <div class="cmtrigt">
-      <div class="noticecon">
-        <div class="proclamation">
-          <div class="tabs-panel">
-            <div class="tabs-panel"> <a href="<?php echo urlShop('show_joinin', 'index');?>" title="商家入驻" class="store-join-btn" target="_blank">商家入驻</a> <a href="<?php echo urlShop('seller_login','show_login');?>" target="_blank" class="store-join-help"><i class="icon-cog"></i>登录商家中心</a> </div>
-            <ul class="mall-news">
-              <?php if(!empty($output['show_article']['notice']['list']) && is_array($output['show_article']['notice']['list'])) { ?>
-              <?php foreach($output['show_article']['notice']['list'] as $val) { ?>
-              <li><i></i><a target="_blank" href="<?php echo empty($val['article_url']) ? urlMember('article', 'show',array('article_id'=> $val['article_id'])):$val['article_url'] ;?>" title="<?php echo $val['article_title']; ?>"><?php echo str_cut($val['article_title'],24);?> </a>
-                <time>(<?php echo date('Y-m-d',$val['article_time']);?>)</time>
-              </li>
-              <?php } ?>
-              <?php } ?>
-            </ul>
+    <div class="bg_kuang">
+      <div class="led_logo"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/ledlogo.png" width="38" height="9"/></div>
+    </div>
+    <!--动画-->
+    <div class="content">
+      <div id=featureContainer>
+        <div id=feature>
+          <div id=block>
+            <div id=botton-scroll>
+              <ul class=featureUL>
+                <li class=featureBox>
+                  <div class=box>
+                    <a href="javascript:void(0);" target="_blank"><img alt=Paracletos
+                                                                       src="<?php echo SHOP_TEMPLATES_URL;?>/images/pro.png"
+                                                                       width="112" height="145"/>
+                    </a>
+                  </div>
+                </li>
+                <li class=featureBox>
+                  <div class=box>
+                    <a href="javascript:void(0);" target="_blank"><img alt=Paracletos
+                                                                       src="<?php echo SHOP_TEMPLATES_URL;?>/images/pro.png"
+                                                                       width="112" height="145"/>
+                    </a>
+                  </div>
+                </li>
+                <li class=featureBox>
+                  <div class=box>
+                    <a href="javascript:void(0);" target="_blank"><img alt=Paracletos
+                                                                       src="<?php echo SHOP_TEMPLATES_URL;?>/images/pro.png"
+                                                                       width="112" height="145"/>
+                    </a>
+                  </div>
+                </li>
+                <li class=featureBox>
+                  <div class=box>
+                    <a href="javascript:void(0);" target="_blank"><img alt=Paracletos
+                                                                       src="<?php echo SHOP_TEMPLATES_URL;?>/images/pro.png"
+                                                                       width="112" height="145"/>
+                    </a>
+                  </div>
+                </li>
+                <li class=featureBox>
+                  <div class=box>
+                    <a href="javascript:void(0);" target="_blank"><img alt=Paracletos
+                                                                       src="<?php echo SHOP_TEMPLATES_URL;?>/images/pro.png"
+                                                                       width="112" height="145"/>
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
+        </div>
+      </div>
+      <a class=prev href="javascript:void();">Previous</a>
+      <a class=next href="javascript:void();">Next</a>
+    </div>
+    <!--动画/-->
+    <div class="right_ban">
+      <div class="login_logo">
+        <span class="lo_lg"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/logo.png"/></span>
+        <span class="zhici">您好，欢迎来到五维商城</span>
+      </div>
+      <div class="user_login_bg">
+        <button class="btn1" type="button">登陆</button>
+        <button class="btn2" type="button">注册</button>
+      </div>
+      <div class="gg">
+        <ul class="tabs ">
+          <li class="active"><a href="#tab1"><span><span>公告</span></span></a></li>
+          <li><a href="#tab2"><span><span>规则</span></span></a></li>
+          <li><a href="#tab3"><span><span>买家入门</span></span></a></li>
+          <li><a href="#tab4"><span><span>卖家入门</span></span></a></li>
+        </ul>
+        <div class="tab_container">
+          <div id="tab1" class="tab_content">
+            <div class="faded">
+              <ul class="big-image">
+                <li>【公告】五维商城全新功能上线维商城全新功能上线</li>
+                <li>【公告】五维商城全新功能上线</li>
+                <li>【公告】五维商城全新功能上线</li>
+              </ul>
+            </div>
+          </div>
+          <div id="tab2" class="tab_content">
+            <div class="faded">
+              <ul class="big-image">
+                <li>【规则】五维商城全新功能上线维商城全新功能上线</li>
+                <li>【规则】五维商城全新功能上线</li>
+                <li>【规则】五维商城全新功能上线</li>
+              </ul>
+            </div>
+          </div>
+          <div id="tab3" class="tab_content">
+            <div class="faded">
+              <ul class="big-image">
+                <li>【买家入门】全新功能上线维商城全新功能上线</li>
+                <li>【买家入门】商城全新功能上线</li>
+                <li>【买家入门】商城全新功能上线</li>
+              </ul>
+            </div>
+          </div>
+          <div id="tab4" class="tab_content">
+            <div class="faded">
+              <ul class="big-image">
+                <li><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/slide4-1big.jpg"></li>
+                <li><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/slide4-2big.jpg"></li>
+                <li><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/slide4-3big.jpg"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rezheng">
+        <ul>
+          <li class="ss"><span class="re_icon"></span><span>企业认证</span></li>
+          <li class="ss"><span class="re_icon"></span><span>实名认证</span></li>
+          <li class="ss"><span class="re_icon"></span><span>客服中心</span></li>
+        </ul>
+      </div>
+      <div class="news">
+        <div class="zxrz">最新入驻</div>
+        <div id="scrollDiv">
+          <ul>
+            <li><span></span><span class="zx"><a>五维信息科技有限公司</a></span></li>
+            <li><span></span><span class="zx"><a>有限公司</a></span></li>
+            <li><span></span><span class="zx"><a>信息科技有限公司</a></span></li>
+            <li><span></span><span class="zx"><a>信息科技有限公司</a></span></li>
+            <li><span></span><span class="zx"><a>wu息科技有限公司</a></span></li>
+            <li><span></span><span class="zx"><a>五五维商城科技有限公司</a></span></li>
+            <li><span></span><span class="zx"><a>五维制造科技有限公司</a></span></li>
+            <li><span></span><span class="zx"><a>天气好差</a></span></li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
 </div>
-<!--热门晒单end-->
 
-<div class="wrapper mt10"><?php echo loadadv(9,'html');?></div>
-<div class="index-link wrapper">
-  <dl class="website">
-    <dt>合作伙伴 | 友情链接<b></b></dt>
-    <dd>
-      <?php 
-		  if(is_array($output['$link_list']) && !empty($output['$link_list'])) {
-		  	foreach($output['$link_list'] as $val) {
-		  		if($val['link_pic'] == ''){
-		  ?>
-      <a href="<?php echo $val['link_url']; ?>" target="_blank" title="<?php echo $val['link_title']; ?>"><?php echo str_cut($val['link_title'],15);?></a>
-      <?php
-		  		}
-		 	}
-		 }
-		 ?>
-    </dd>
-  </dl>
+
+<!--主体内容-->
+<div class="main_contant">
+  <div class="wrap_contant">
+    <div class="qiugou_con">
+      <div class="qg">
+        <span class="qg_logo"></span><span class="qg_tittle">求购</span>
+        <span class="more">更多求购></span>
+      </div>
+      <div class="shop">
+        <div class="shop_left">
+          <h2 class="choose"><span>地域选择</span><span class="ditu_icon"></span></h2>
+          <div class="provice">
+            <a>安徽</a>
+            <a>北京</a>
+            <a>福建</a>
+            <a>甘肃</a>
+            <a>广东</a>
+            <a>广西</a>
+            <a>贵州</a>
+            <a>海南</a>
+            <a>河北</a>
+            <a>河南</a>
+            <a>黑龙江</a>
+            <a>湖北</a>
+            <a>湖南</a>
+            <a>吉林</a>
+            <a>江苏</a>
+            <a>江西</a>
+            <a>辽宁</a>
+            <a>内蒙古自治区</a>
+            <a>宁夏</a>
+            <a>青海</a>
+            <a>山东</a>
+            <a>山西</a>
+          </div>
+        </div>
+        <div class="shop_right">
+          <div class="v_show">
+            <div class="v_content">
+              <div class="v_content_list">
+                <ul>
+                  <li>
+                    <span class="sort"><a>地板材料</a><a>实木材料</a></span>
+                    <span class="tittle">广州信息五维信息科技广州信息五维信息科技广州信息五维信息科技</span>
+								<span><p>剩余有效期<i>31</i>天</p>
+								<p>剩余有效期<i>31</i>天</p>
+								<p>联系人：江**</p>
+								<p>电话：12345678910</p>
+								<p>采购量：1000块</p>
+								</span>
+                    <span class="btn">立即报价</span>
+                  </li>
+                  <li>
+                    <span class="sort"><a>地板材料</a><a>实木材料</a></span>
+                    <span class="tittle">广州信息五维信息科技广州信息五维信息科技广州信息五维信息科技</span>
+								<span><p>剩余有效期<i>31</i>天</p>
+								<p>剩余有效期<i>31</i>天</p>
+								<p>联系人：江**</p>
+								<p>电话：12345678910</p>
+								<p>采购量：1000块</p>
+								</span>
+                    <span class="btn">立即报价</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="change_btn">
+              <span class="prev_btn"></span>
+              <span class="next_btn"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--第一个广告条-->
+    <div class="adv1">
+      <img src="<?php echo SHOP_TEMPLATES_URL;?>/images/img/banner.png"/>
+    </div>
+    <!--厂家特惠-->
+    <div class="tehui">
+      <div class="qg">
+        <span class="qg_logo"></span><span class="qg_tittle">厂家特惠——特惠行货，厂家直销——</span>
+        <span class="more"></span>
+      </div>
+      <!--厂家特惠广告位-->
+      <div class="banner_cj">
+        <ul>
+          <li>
+            <p class="cj_produt"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/cj_1.png" width="298" height="360"/></p>
+            <div class="sore">
+              <p class="sore_name">松下电器</p>
+              <p class="conten"><span class="sore_xx">匠心独运冰箱，洗衣机洗衣机洗衣机</span><span class="price">￥199</span></p>
+            </div>
+          </li>
+          <li>
+            <p class="cj_produt"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/cj_1.png" width="298" height="360"/></p>
+            <div class="sore">
+              <p class="sore_name">松下电器</p>
+              <p class="conten"><span class="sore_xx">匠心独运冰箱，洗衣机洗衣机洗衣机</span><span class="price">￥199</span></p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!--楼层栏-->
+    <div class="floor_con">
+      <div class="qg"><span class="qg_logo"></span><span class="qg_tittle">行业市场——行业精品，特惠来袭——</span><span class="more"></span></div>
+      <!--1-->
+      <div class="floor">
+        <div class="floor1_left">
+          <div class="banner_left">
+            <span class="f1"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/img/1F.png" width="71" height="50"/></span>
+            <span class="ban"><img class="advimg" src="<?php echo SHOP_TEMPLATES_URL;?>/images/img/shafa.png"/></span>
+            <div class="left_title"><span>家居家装</span><span>家用电器</span><a class="look" href="#">查看详情 ></a></div>
+          </div>
+          <div class="main_top">
+            <span class="jux"></span>
+            <span class="text">家居家装/家用电器</span>
+            <span class="tuijian">商品推荐</span>
+            <span class="sj_icon"></span>
+          </div>
+          <div class="tab">
+            <div class="tab_menu">
+              <ul class="tabs_f1 ">
+                <li class="selected"><a href="#">家具软饰</a></li>
+                <li><a href="#">沙发类</a></li>
+                <li><a href="#">柜类</a></li>
+                <li><a href="#">地垫</a></li>
+                <li><a href="#">厨房电器</a></li>
+                <li><a href="#">柜类</a></li>
+                <li><a href="#">床上用品</a></li>
+                <li><a href="#">厨房电器</a></li>
+                <li><a href="#">柜类</a></li>
+                <li><a href="#">床上用品</a></li>
+              </ul>
+            </div>
+            <div class="tab_box">
+              <div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="floor1_right">
+          <div class="banner_left">
+            <span class="ban"><img class="advimg" src="<?php echo SHOP_TEMPLATES_URL;?>/images/img/shafa.png"/></span>
+            <div class="left_title"><span>家居家装</span><span>家用电器</span><a class="look" href="#">查看详情 ></a></div>
+          </div>
+          <div class="main_top">
+            <span class="jux"></span>
+            <span class="text">家居家装/家用电器</span>
+            <span class="tuijian">商品推荐</span>
+            <span class="sj_icon"></span>
+          </div>
+          <div class="tab">
+            <div class="tab_menu">
+              <ul class="tabs_f1 ">
+                <li class="selected"><a href="#">家具软饰</a></li>
+                <li><a href="#">沙发类</a></li>
+                <li><a href="#">柜类</a></li>
+                <li><a href="#">地垫</a></li>
+                <li><a href="#">厨房电器</a></li>
+                <li><a href="#">柜类</a></li>
+                <li><a href="#">床上用品</a></li>
+                <li><a href="#">厨房电器</a></li>
+                <li><a href="#">柜类</a></li>
+                <li><a href="#">床上用品</a></li>
+              </ul>
+            </div>
+            <div class="tab_box">
+              <div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="floor1_left">
+          <div class="banner_left">
+            <span class="f1"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/img/2F.png" width="71" height="50"/></span>
+            <span class="ban"><img class="advimg" src="<?php echo SHOP_TEMPLATES_URL;?>/images/img/shafa.png"/></span>
+            <div class="left_title"><span>家居家装</span><span>家用电器</span><a class="look" href="#">查看详情 ></a></div>
+          </div>
+          <div class="main_top">
+            <span class="jux"></span>
+            <span class="text">家居家装/家用电器</span>
+            <span class="tuijian">商品推荐</span>
+            <span class="sj_icon"></span>
+          </div>
+          <div class="tab">
+            <div class="tab_menu">
+              <ul class="tabs_f1 ">
+                <li class="selected"><a href="#">家具软饰</a></li>
+                <li><a href="#">沙发类</a></li>
+                <li><a href="#">柜类</a></li>
+                <li><a href="#">地垫</a></li>
+                <li><a href="#">厨房电器</a></li>
+                <li><a href="#">柜类</a></li>
+                <li><a href="#">床上用品</a></li>
+                <li><a href="#">厨房电器</a></li>
+                <li><a href="#">柜类</a></li>
+                <li><a href="#">床上用品</a></li>
+              </ul>
+            </div>
+            <div class="tab_box">
+              <div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="floor1_right">
+          <div class="banner_left">
+            <span class="ban"><img class="advimg" src="<?php echo SHOP_TEMPLATES_URL;?>/images/img/shafa.png"/></span>
+            <div class="left_title"><span>家居家装</span><span>家用电器</span><a class="look" href="#">查看详情 ></a></div>
+          </div>
+          <div class="main_top">
+            <span class="jux"></span>
+            <span class="text">家居家装/家用电器</span>
+            <span class="tuijian">商品推荐</span>
+            <span class="sj_icon"></span>
+          </div>
+          <div class="tab">
+            <div class="tab_menu">
+              <ul class="tabs_f1 ">
+                <li class="selected"><a href="#">家具软饰</a></li>
+                <li><a href="#">沙发类</a></li>
+                <li><a href="#">柜类</a></li>
+                <li><a href="#">地垫</a></li>
+                <li><a href="#">厨房电器</a></li>
+                <li><a href="#">柜类</a></li>
+                <li><a href="#">床上用品</a></li>
+                <li><a href="#">厨房电器</a></li>
+                <li><a href="#">柜类</a></li>
+                <li><a href="#">床上用品</a></li>
+              </ul>
+            </div>
+            <div class="tab_box">
+              <div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="floor1_left">
+          <div class="banner_left">
+            <span class="f1"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/img/3F.png" width="71" height="50"/></span>
+            <span class="ban"><img class="advimg" src="<?php echo SHOP_TEMPLATES_URL;?>/images/img/shafa.png"/></span>
+            <div class="left_title"><span>家居家装</span><span>家用电器</span><a class="look" href="#">查看详情 ></a></div>
+          </div>
+          <div class="main_top">
+            <span class="jux"></span>
+            <span class="text">家居家装/家用电器</span>
+            <span class="tuijian">商品推荐</span>
+            <span class="sj_icon"></span>
+          </div>
+          <div class="tab">
+            <div class="tab_menu">
+              <ul class="tabs_f1 ">
+                <li class="selected"><a href="#">家具软饰</a></li>
+                <li><a href="#">沙发类</a></li>
+                <li><a href="#">柜类</a></li>
+                <li><a href="#">地垫</a></li>
+                <li><a href="#">厨房电器</a></li>
+                <li><a href="#">柜类</a></li>
+                <li><a href="#">床上用品</a></li>
+                <li><a href="#">厨房电器</a></li>
+                <li><a href="#">柜类</a></li>
+                <li><a href="#">床上用品</a></li>
+              </ul>
+            </div>
+            <div class="tab_box">
+              <div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="floor1_right">
+          <div class="banner_left">
+            <span class="ban"><img class="advimg" src="<?php echo SHOP_TEMPLATES_URL;?>/images/img/shafa.png"/></span>
+            <div class="left_title"><span>家居家装</span><span>家用电器</span><a class="look" href="#">查看详情 ></a></div>
+          </div>
+          <div class="main_top">
+            <span class="jux"></span>
+            <span class="text">家居家装/家用电器</span>
+            <span class="tuijian">商品推荐</span>
+            <span class="sj_icon"></span>
+          </div>
+          <div class="tab">
+            <div class="tab_menu">
+              <ul class="tabs_f1 ">
+                <li class="selected"><a href="#">家具软饰</a></li>
+                <li><a href="#">沙发类</a></li>
+                <li><a href="#">柜类</a></li>
+                <li><a href="#">地垫</a></li>
+                <li><a href="#">厨房电器</a></li>
+                <li><a href="#">柜类</a></li>
+                <li><a href="#">床上用品</a></li>
+                <li><a href="#">厨房电器</a></li>
+                <li><a href="#">柜类</a></li>
+                <li><a href="#">床上用品</a></li>
+              </ul>
+            </div>
+            <div class="tab_box">
+              <div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--第三层之后出现banner-->
+        <div class="adv2">
+          <img src="<?php echo SHOP_TEMPLATES_URL;?>/images/img/banner.png"/>
+        </div>
+        <!--4-->
+        <div class="floor1_left">
+          <div class="banner_left">
+            <span class="f1"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/img/4F.png" width="71" height="50"/></span>
+            <span class="ban"><img class="advimg" src="<?php echo SHOP_TEMPLATES_URL;?>/images/img/shafa.png"/></span>
+            <div class="left_title"><span>家居家装</span><span>家用电器</span><a class="look" href="#">查看详情 ></a></div>
+          </div>
+          <div class="main_top">
+            <span class="jux"></span>
+            <span class="text">家居家装/家用电器</span>
+            <span class="tuijian">商品推荐</span>
+            <span class="sj_icon"></span>
+          </div>
+          <div class="tab">
+            <div class="tab_menu">
+              <ul class="tabs_f1 ">
+                <li class="selected"><a href="#">家具软饰</a></li>
+                <li><a href="#">沙发类</a></li>
+                <li><a href="#">柜类</a></li>
+                <li><a href="#">地垫</a></li>
+                <li><a href="#">厨房电器</a></li>
+                <li><a href="#">柜类</a></li>
+                <li><a href="#">床上用品</a></li>
+                <li><a href="#">厨房电器</a></li>
+                <li><a href="#">柜类</a></li>
+                <li><a href="#">床上用品</a></li>
+              </ul>
+            </div>
+            <div class="tab_box">
+              <div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="floor1_right">
+          <div class="banner_left">
+            <span class="ban"><img class="advimg" src="<?php echo SHOP_TEMPLATES_URL;?>/images/img/shafa.png"/></span>
+            <div class="left_title"><span>家居家装</span><span>家用电器</span><a class="look" href="#">查看详情 ></a></div>
+          </div>
+          <div class="main_top">
+            <span class="jux"></span>
+            <span class="text">家居家装/家用电器</span>
+            <span class="tuijian">商品推荐</span>
+            <span class="sj_icon"></span>
+          </div>
+          <div class="tab">
+            <div class="tab_menu">
+              <ul class="tabs_f1 ">
+                <li class="selected"><a href="#">家具软饰</a></li>
+                <li><a href="#">沙发类</a></li>
+                <li><a href="#">柜类</a></li>
+                <li><a href="#">地垫</a></li>
+                <li><a href="#">厨房电器</a></li>
+                <li><a href="#">柜类</a></li>
+                <li><a href="#">床上用品</a></li>
+                <li><a href="#">厨房电器</a></li>
+                <li><a href="#">柜类</a></li>
+                <li><a href="#">床上用品</a></li>
+              </ul>
+            </div>
+            <div class="tab_box">
+              <div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/plzs.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+                <div class="rig_zs">
+                  <span class="small"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/small1.png" width="111" height="111"></span>
+                  <span class="right_t">厂家生产小型床厂家生产小型床</span>
+                  <span class="sz">119元</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--6-->
+    </div>
+    <!--资讯-->
+    <div class="zixun_cont">
+      <div class="zixun">
+        <span class="qg_logo"></span><span class="qg_tittle">五维资讯——有个性的建材资讯</span>
+      </div>
+      <div class="zixun_main">
+        <div class="zx_banner_left">
+          <div class="zx_banner">
+            <ul>
+              <li><a href="#"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/banner/cms_01.jpg" width="460" height="240" alt="1"/></a></li>
+              <li><a href="#"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/banner/cms_02.jpg" width="460" height="240"  alt="2"/></a></li>
+              <li><a href="#"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/banner/cms_03.jpg" width="460" height="240"  alt="3"/></a></li>
+              <li><a href="#"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/banner/cms_04.jpg" width="460" height="240"  alt="4"/></a></li>
+            </ul>
+            <ol>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ol>
+            <p class="zx_titlle">【针锋相对】人物接龙游戏解密：年轻的秘密年轻的秘密年轻的秘密年轻的秘密</p>
+          </div>
+          <div class="zx_bottom">
+            <p class="zx_lei">
+              <a><span class="lei_tittle">【针锋相对】人物接龙游戏解密：年轻的秘密年轻的秘密年轻的秘密年轻的秘密</span>
+                <span class="lei_time">2016-04-11</span></a>
+            </p>
+            <p class="zx_lei">
+              <a><span class="lei_tittle">【针锋相对】人物接龙游戏解密：年轻的秘密年轻的秘密年轻的秘密年轻的秘密</span>
+                <span class="lei_time">2016-04-11</span></a>
+            </p>
+          </div>
+        </div>
+        <div class="zx_top">
+          <h1 class="top_zx">资讯头条</h1>
+          <div class="top_bottom">
+            <p>
+              <a>
+                <span class="icon_sz">1</span>
+                <span class="xq_zx">人物接龙游戏揭秘：如何保持心宽体胖人物接龙游戏揭秘：如何保持心宽体胖</span>
+                <span class="fb_time">2016-04-11</span>
+              </a>
+            </p>
+            <p>
+              <a>
+                <span class="icon_sz">2</span>
+                <span class="xq_zx">人物接龙游戏揭秘：如何保持心宽体胖人物接龙游戏揭秘：如何保持心宽体胖</span>
+                <span class="fb_time">2016-04-11</span>
+              </a>
+            </p>
+            <p>
+              <a>
+                <span class="icon_sz">3</span>
+                <span class="xq_zx">人物接龙游戏揭秘：如何保持心宽体胖人物接龙游戏揭秘：如何保持心宽体胖</span>
+                <span class="fb_time">2016-04-11</span>
+              </a>
+            </p>
+            <p>
+              <a>
+                <span class="icon_sz">4</span>
+                <span class="xq_zx">人物接龙游戏揭秘：如何保持心宽体胖人物接龙游戏揭秘：如何保持心宽体胖</span>
+                <span class="fb_time">2016-04-11</span>
+              </a>
+            </p>
+            <p>
+              <a>
+                <span class="icon_sz">5</span>
+                <span class="xq_zx">人物接龙游戏揭秘：如何保持心宽体胖人物接龙游戏揭秘：如何保持心宽体胖</span>
+                <span class="fb_time">2016-04-11</span>
+              </a>
+            </p>
+            <p>
+              <a>
+                <span class="icon_sz">6</span>
+                <span class="xq_zx">人物接龙游戏揭秘：如何保持心宽体胖人物接龙游戏揭秘：如何保持心宽体胖</span>
+                <span class="fb_time">2016-04-11</span>
+              </a>
+            </p>
+            <p>
+              <a>
+                <span class="icon_sz">7</span>
+                <span class="xq_zx">人物接龙游戏揭秘：如何保持心宽体胖人物接龙游戏揭秘：如何保持心宽体胖</span>
+                <span class="fb_time">2016-04-11</span>
+              </a>
+            </p>
+            <p>
+              <a>
+                <span class="icon_sz">8</span>
+                <span class="xq_zx">人物接龙游戏揭秘：如何保持心宽体胖人物接龙游戏揭秘：如何保持心宽体胖</span>
+                <span class="fb_time">2016-04-11</span>
+              </a>
+            </p>
+            <p>
+              <a>
+                <span class="icon_sz">9</span>
+                <span class="xq_zx">人物接龙游戏揭秘：如何保持心宽体胖人物接龙游戏揭秘：如何保持心宽体胖</span>
+                <span class="fb_time">2016-04-11</span>
+              </a>
+            </p>
+            <p>
+              <a>
+                <span class="icon_sz">10</span>
+                <span class="xq_zx">人物接龙游戏揭秘：如何保持心宽体胖人物接龙游戏揭秘：如何保持心宽体胖</span>
+                <span class="fb_time">2016-04-11</span>
+              </a>
+            </p>
+          </div>
+        </div>
+        <div class="zx_right">
+          <h1 class="right_zx">热门展会</h1>
+          <div class=""><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/img/img3.png" width="295" height="182"/></div>
+          <div class="zx_right_bottom">
+            <p>
+              <span class="icon_bj"></span>
+              <a><span class="xq_zx">人物接龙游戏揭秘：如何保持心宽体胖人物接龙游戏揭秘：如何保持心宽体胖</span></a>
+            </p>
+            <p>
+              <span class="icon_bj"></span>
+              <a><span class="xq_zx">人物接龙游戏揭秘：如何保持心宽体胖人物接龙游戏揭秘：如何保持心宽体胖</span></a>
+            </p>
+            <p>
+              <span class="icon_bj"></span>
+              <a><span class="xq_zx">人物接龙游戏揭秘：如何保持心宽体胖人物接龙游戏揭秘：如何保持心宽体胖</span></a>
+          </div>
+        </div>
+      </div><!--资讯-->
+    </div>
+  </div>
 </div>
-<div class="footer-line"></div>
-<!--首页底部保障开始-->
-<?php require_once template('layout/index_ensure');?>
-<!--首页底部保障结束--> 
-<!--StandardLayout Begin-->
-<div id="nav_box">
-  <ul>
-    <li class="nav_h_1"><a href="javascript:;" class="num">1F</a> <a href="javascript:;" class="word">女装</a></li>
-    <li class="nav_h_2"><a href="javascript:;" class="num">2F</a> <a href="javascript:;" class="word">男装</a></li>
-    <li class="nav_h_3"><a href="javascript:;" class="num">3F</a> <a href="javascript:;" class="word">鞋靴</a></li>
-    <li class="nav_h_4"><a href="javascript:;" class="num">4F</a> <a href="javascript:;" class="word">护肤</a></li>
-    <li class="nav_h_5"><a href="javascript:;" class="num">5F</a> <a href="javascript:;" class="word">皮具</a></li>
-    <li class="nav_h_6"><a href="javascript:;" class="num">6F</a> <a href="javascript:;" class="word">户外</a></li>
-    <li class="nav_h_7"><a href="javascript:;" class="num">7F</a> <a href="javascript:;" class="word">配饰</a></li>
-    <li class="nav_h_8"><a href="javascript:;" class="num">8F</a> <a href="javascript:;" class="word">家居</a></li>
-  </ul>
-</div>
-<!--StandardLayout End-->

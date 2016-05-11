@@ -1,0 +1,38 @@
+//左侧菜单的js
+$(document).ready(function(){
+	$('.all-sort-list > .item').hover(function(){
+			$(this).addClass('hover');
+			$(this).children('.item-list').css('display','block');
+			$('.top_banner').css('display','none');
+			//$(this).children('.bg_icon').css('display','block');
+			$(this).find(".nav_wz").addClass('nav_wz_hover'); 
+			$(this).children('nav_wz').css('display','none');
+			$(this).find(".nav_ico").addClass('nav_ico_hover');		
+            $(this).children('nav_ico').css('display','none');
+            $(this).find(".com_ico").addClass('com_ico_hover');		
+            $(this).children('com_ico').css('display','none');			
+		},function(){
+			$(this).removeClass('hover');
+			$(this).children('.item-list').css('display','none');
+			$('.top_banner').css('display','block');
+			//$(this).children('.bg_icon').css('display','none');	
+			$(this).find(".nav_wz").removeClass('nav_wz_hover'); 
+			$(this).children('nav_wz').css('display','block');
+			$(this).find(".nav_ico").removeClass('nav_ico_hover');		
+            $(this).children('nav_ico').css('display','block');	
+			$(this).find(".com_ico").removeClass('com_ico_hover');		
+            $(this).children('com_ico').css('display','block');	
+		});
+		//企业认证
+	$('.ss').hover(function(){
+	$(this).find(".re_icon").addClass('re_icon_hover');	
+	},function(){
+	$(this).find(".re_icon").removeClass('re_icon_hover');
+	});
+	//企业认证
+	$('.v_content_list > ul > li').hover(function(){
+	$(this).find(".btn").addClass('btn_hover');	
+	},function(){
+	$(this).find(".btn").removeClass('btn_hover');
+	});
+});

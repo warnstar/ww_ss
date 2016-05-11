@@ -1,0 +1,288 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf8" />
+<title>公司基本信息</title>
+<link href="css/collect.css" rel="stylesheet" type="text/css"/>
+<link href="css/style.css" rel="stylesheet" type="text/css"/>
+<link href="css/zhongtai.css" rel="stylesheet" type="text/css"/>
+<body>
+<!--top-->
+<div class="public_top">
+	<div class="wrapper_top">
+		<div class="user">
+		<span><a>手机五维商城</a></span>
+		<span><a>[登陆]</a></span>
+		<span><a>新用户？</a></span>
+		<span><a>[免费注册]</a></span>
+		</div>
+		<div class="menu_right">
+		<ul class="menu_top">
+		<li class="menu_1"><a>五维商城首页</a></li><span class="icon_y">|</span>
+		<li class="menu_2"><a>个人中心</a><span class="clcle"></span></li><span class="icon_y">|</span>
+		<li class="menu_3"><a>进货单</a></li><span class="icon_y">|</span>
+		<li class="menu_4"><a>收藏夹<span class="sl">0</span></a></li><span class="icon_y">|</span>
+		<li class="menu_5"><a>客服中心</a></li>
+		</ul>
+		</div>
+	</div>
+</div>
+<!--header-->
+<div class="header">
+	<div class="header_con">
+	<div class="zt_logo_collect">
+	<span class="logo_jinhuo"><img src="images/logo.png" width="180" height="55" title="" alt=""/></span>
+	<span class="coll_mj">买家中心
+	<span class="collect_icon"></span>
+	<a href="ZT_maijiazhongxin.html"><span class="maiji_zx">卖家中心</span></a>
+	</span>
+	</div>
+	<span class="line"></span>
+	<ul class="nav_coll">
+		<li class="s_num1" style="background: #ef5e00;"><a>首页</a></li>
+		<li class="s_num2"><a href="collect_dp.html">个人资料管理</a></li>
+	</ul>
+	</div>
+</div><!--header-->
+<!--wrapp-->
+<div class="wrapp">
+	<div class="wrapp_con">
+		<div class="wrapp_con_left">
+			<ul class="jy">
+			<li class="wbh">交易前</li>
+			<li><a>进货单</a></li>
+			<li><a>收藏夹</a></li>
+			<li><a>收货地址管理</a></li>
+			</ul>
+			<ul>
+			<li class="wbh">交易中</li>
+			<li><a>已买到的货品</a></li></li>
+			</ul>
+			<ul>
+			<li class="wbh">交易后</li>
+			<li><a>做出的评价</a></li></li>
+			<li><a>退款退货处理</a></li>
+			</ul>
+		</div><!--wrapp_con_left-->
+		<div class="right_xinxi">
+			<ul class="rig_xx_top">
+			<li class="bg_xxin">基本信息</li>
+			<li>公司信息</li>
+			<li>收货地址管理</li>
+			</ul>
+			<div class="form">
+			<div class="">
+			<p class="zhxx">您的账户信息：</p>
+			<p class="ph_hm"><span>手机号码：</span><span>1365665554</span>
+			<span class="xiug">修改</span>
+			<div class="conment_email">
+			<div class="phone_xg">
+					<span class="xiugsj">修改手机号码</span>
+					<ul class="shoujiyz">
+						<form name="form1" method="post" action="">
+						<div class="int int_zt">
+							<input maxlength="11" type="text" id="phone" class="required" value="旧手机号" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '旧手机号';}"/>
+						</div>
+						<div class="int dx_int int_zt">
+							<label for="phone"></label>
+							<input maxlength="6" type="text" id="zt_dxyz"/>
+							<input id="btnSendCode" type="button" value="发送验证码" onclick="sendMessage()" /> 
+							<!--<span class="dxyz_btn">获取短信验证码</span>-->
+						</div>
+						<div class="int int_zt">
+							<input maxlength="11" type="text" id="phone" class="required" value="新手机号码" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '旧手机号';}"/>
+						</div>
+						<div class="int int_zt">
+							<input maxlength="11" type="text" id="phone" class="required" value="再次确认新手机号码" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '旧手机号';}"/>
+						</div>
+						<div class="int int_zt"><input name="Button" type="button" value="确认" id="phone_qr"></div>
+						</form>
+					</ul>
+					</div>
+			</div>
+			</p>
+			<p class="ph_hm">用于登陆，安全验证，找回密码等重要操作</p>
+			</div>
+			<div class="toux_logo">
+			<span class="logo_muq">您当前头像：</span>
+			<span class="t_logo"><img src="images/toux_logo.png"width="100" height="100"/></span>
+			<span class="tx_chage touxi">更换头像</span>
+			<span class="tx_chage">上传图片要求：</span>
+			<span class="tx_chage">请使用真实头像，展示风格支持JPG,JPEG,GIF,PNG风格，支持2M以内的图片</span>
+			</div>
+		    <form method="post" action="">
+			<div class="int">
+				<label for="username"><strong class="high">*</strong>真实姓名:</label>
+				<input type="text" id="username" class="required" />
+			</div>
+			<div class="zt_sel">
+			<p class="p_line"><span class="xb_six"><strong class="high">*</strong>性别:</span>
+			</p>
+				<div class="checkboxFour">
+				</div>
+				<div class="tuizhi">先生</div>
+				<div class="checkboxFour checkboxFour_select">
+				</div>
+				<div class="tuizhi">女士</div>
+			</div>
+			<div class="zt_sel">
+			<p class="p_line"><span class="xb_six">会员身份:</span>
+			</p>
+				<div class="checkboxFive">
+				</div>
+				<div class="tuizhi">企业单位</div>
+				<div class="checkboxFive checkboxFive_select">
+				</div>
+				<div class="tuizhi">事业单位或社会团体</div>
+				<div class="checkboxFive">
+				</div>
+				<div class="tuizhi">个体经营</div>
+				<div class="checkboxFive">
+				</div>
+				<div class="tuizhi">个人</div>
+			<p class="zhizhao">说明：无营业执照，请选"个人"</p>
+			</div>
+			<div class="int">
+				<label for="email"><strong class="high">*</strong>业务联系邮箱:</label>
+				<input type="text" id="email" class="required" />
+			</div>
+			<div class="int">
+				<label for="phone"><strong class="high">*</strong>业务联系手机:</label>
+				<input maxlength="11" type="text" id="phone" class="required"/>
+			</div>
+			<div class="int">
+				<label for="phone">手机号:</label>
+				<span class="prefix">86</span><i>-</i>
+				<span class="fma">400</span>
+				<input maxlength="11" type="text" id=""/>
+			</div>
+			<div class="int">
+				<label for="phone">传真:</label>
+				<input class="prefix" maxlength="11" type="text" id=""/>
+				<input class="fma" maxlength="11" type="text" id=""/>
+				<input maxlength="11" type="text" id=""/>
+			</div>
+			<div class="int">
+				<label for="phone"><strong class="high">*</strong>联系地址:</label>
+				<select id="cju_sort">
+				<option value="1">中国</option>
+				<option value="2">西班牙</option>
+				<option value="3">意大利</option>
+				</select>
+				<select id="cju_sort">
+				<option value="1">广东省</option>
+				<option value="2">广西省</option>
+				<option value="3">河北省</option>
+				</select>
+				<select id="cju_sort">
+				<option value="1">广州市</option>
+				<option value="2">下架</option>
+				<option value="3">锁定</option>
+				</select>
+				<select id="cju_sort">
+				<option value="1">海珠区</option>
+				<option value="2">荔湾区</option>
+				<option value="3">天河区</option>
+				</select>
+				
+			</div>
+			<div class="int">
+				<input class="xinagxi" maxlength="11" type="text" id=""/>
+			</div>
+			<div class="int">
+				<label for="phone">邮编:</label>
+				<input maxlength="6" type="text" id=""/>
+			</div>
+			<div class="next_btn"><a href="javascript:void(0);">下一步</a></div>
+			<!--<div class="int">
+				<label for="email">请设置邮箱:</label>
+				<input type="text" id="email" class="required" />
+			</div>
+			<div class="int">
+				<label for="phone">手机号:</label>
+				<span class="prefix">+86</span>
+				<input maxlength="11" type="text" id="phone" class="required"/>
+			</div>-->
+			</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="footer_zt">
+<div class="zt_footer_mian">
+	<div class="zt_foot_left">
+	<p>
+	<span class="phone_bg"></span><span class="zt_wz_ph">全国统一免费咨询热线：</p>
+	<span class="zt_phone">020-8963-5818</span>
+	</div>
+	<div class="zt_foot_right">
+	<p class="youqlj">
+		<span>友情链接：</span>
+		<span><a>粤志照明</a></span><span>|</span><span><a>仁迪照明</a></span><span>|</span>
+		<span><a>创意灯照明</a></span><span>|</span>
+		<span><a>大照明</a></span><span>|</span><span><a>三雄.极光</a></span><span>|</span><span><a>雷士照明</a></span><span>|</span>
+		<span><a>飞利浦</a></span><span>|</span><span><a>华艺HY</a></span><span>|</span><span><a>古镇灯饰报</a></span>
+		</p>
+	<p class="zt_copyright">版权所有 五维商城 copyright@2015-2017 
+		<span><a>公司域名</a></span>
+		<span><a>法律声明</a></span>
+		<span><a>服务条款</a></span>
+		<span><a>隐私声明</a></span>
+		<span><a>联系我们</a></span>
+		</p>
+		<p class="zt_beianh">网站备案号许可证：<span>备案号</span></p>
+	</div>
+</div>
+</div>
+<!--   引入jQuery -->
+<script src="js/jquery/jquery-1.3.1.js" type="text/javascript"></script>
+<script src="js/left_shop.js" type="text/javascript"></script>
+<!--删除-->
+<script src="js/delelect.js" type="text/javascript"></script>
+<!--所有checkbox跟着全选的checkbox走-->
+<script src="js/collect_check.js" type="text/javascript"></script>
+<script src="js/form.js" type="text/javascript"></script>
+<script src="js/yanzhengma.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function(){
+
+	var page=1;
+	
+	if(page==0)
+	{
+	$(".table_bottom").hide()
+	$(".table_bottom2").hide()
+	}//符合表达式执行的代码
+
+	else if (page>3)
+	{
+	$(".table_bottom2").show()
+	$(".table_bottom").hide()
+	}//符合表达式执行的代码
+	
+	$(".coll_mj").hover(function(){
+	//$(this).css("background","#ef5e00");
+	$(this).find(".maiji_zx").css("display","block");
+	},function(){
+	$(this).find(".maiji_zx").css("display","none");
+	});
+	$(".checkboxFour").click(function(){
+	$(this).addClass("checkboxFour_select").siblings().removeClass("checkboxFour_select");
+	});
+	$(".checkboxFive").click(function(){
+	$(this).addClass("checkboxFive_select").siblings().removeClass("checkboxFive_select");
+	});
+	$(".xiug").click(function(){
+		$(".conment_email").show();
+	//},function(){
+		//$(".conment_email").hide();
+	});
+	$("#phone_qr").click(function(){
+		$(".conment_email").hide();
+	//},function(){
+		//$(".conment_email").hide();
+	});
+});
+</script>
+</body>
+</html>

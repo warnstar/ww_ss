@@ -1,0 +1,259 @@
+﻿/* CSS Document */
+/* CSS Document */
+
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
+article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
+ol,ul{
+	list-style:none;
+	margin:0;
+	padding:0;
+	}
+blockquote,q{
+	quotes:none;
+	}
+blockquote:before,blockquote:after,q:before,q:after{
+	content:'';
+	content:none;
+	}
+	* {
+		font-family:"微软雅黑";
+	}
+table{
+	border-collapse:collapse;
+	border-spacing:0;
+	}
+/* start editing from here */
+a{
+	text-decoration:none;
+	}
+.txt-rt{
+	text-align:right;
+	}/* text align right */
+.txt-lt{
+	text-align:left;
+	}/* text align left */
+.txt-center{
+	text-align:center;
+	}/* text align center */
+.float-rt{
+	float:right;
+	}/* float right */
+.float-lt{
+	float:left;
+	}/* float left */
+.clear{
+	clear:both;
+	}/* clear float */
+.pos-relative{
+	position:relative;
+	}/* Position Relative */
+.pos-absolute{
+	position:absolute;
+	}/* Position Absolute */
+.vertical-base{	
+vertical-align:baseline;
+}/* vertical align baseline */
+.vertical-top{	
+vertical-align:top;
+}/* vertical align top */
+.underline{	
+padding-bottom:5px;
+border-bottom: 1px solid #eee; 
+margin:0 0 20px 0;
+}/* Add 5px bottom padding and a underline */
+nav.vertical ul li{	
+display:block;
+}/* vertical menu */
+nav.horizontal ul li{	
+display: inline-block;
+}/* horizontal menu */
+img{
+	max-width:100%;
+	}
+/* Global properties ======================================================== */
+body { 
+	background:#fff; 
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:100%; 
+	line-height:1em;
+	color:#a6a6a6;
+}
+html { 
+	min-width:1000px;
+}
+html, 
+body { 
+	height:100%;
+}
+a:hover, a:focus {
+    color: #E74C3C;
+    text-decoration: underline;
+}
+
+
+/*底部*/
+.footer {
+	width: 100%;
+	float: left;
+	margin-top: 60px;
+	background: #f6f6f6;
+}
+.footer_con {
+	width: 1222px;
+	margin: 0 auto;
+	padding-top: 22px;
+}
+.left_foot {
+	width :275px;
+	padding: 10px;
+	float: left;
+}
+.left_foot span {
+	display: block;
+	float: left;
+}
+.tit_foot {
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	font-size: 16px;
+	color :#6d6d6d;
+	font-family:"微软雅黑";
+	
+}
+.left_bottom {
+	width: 100%;
+	margin-top: 60px;
+	float: left;
+}
+.phone_bg {
+	width: 21px;
+	height: 29px;
+	float: left;
+	background: url(../images/phone.png) no-repeat;
+}
+.wz_ph {
+	height: 30px;
+	line-height: 30px;
+	color: #fff;
+	font-weight: bold;
+	font-family:"微软雅黑";
+	font-size:14px;
+}
+.phone {
+	width: 100%;
+	height: 35px;
+	line-height: 35px;
+	font-size: 22px;
+	
+}
+.mlddle_foot {
+	width: 925px;
+	float: left;
+	
+}
+.mlddle_foot ul {
+	width: 780px;
+	float: left;
+}
+.mlddle_foot ul li {
+	width: 100px;
+	float: left;
+	margin: 0 15px;
+}
+.mlddle_foot ul li span {
+	display: block;
+	float: left;
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	color: #6d6d6d;
+	font-size: 14px;
+	font-family: "微软雅黑";
+	font-weight: bold;
+	cursor: pointer;
+}
+.mlddle_foot ul li a {
+	display: block;
+	float: left;
+	width: 100%;
+	cursor: pointer;
+	color: #a9a9a9;
+	height: 25px;
+	line-height: 25px;
+	font-size: 12px;
+	
+}
+.beianh {
+	height: 40px;
+	line-height:40px;
+	font-size: 12px;
+	margin-left: 15px;
+	border-bottom: 1px solid #474548;
+	width: 100%;
+	float: left;
+}
+.mlddle_foot_con {
+	width: 927px;
+	float: left;
+}
+.right_foot {
+	width: 120px;
+	float: right;
+}
+.right_foot p {
+	width: 100px;
+	height: 88px;
+	margin: 0 auto;
+}
+.right_foot p img {
+	text-align: center;
+}
+.right_foot span {
+	width: 100%;
+	display: block;
+	float: left;
+	color: #fff;
+	font-size: 12px;
+	font-weight: bold;
+	height: 35px;
+	line-height: 35px;
+}
+.lianjie_href {
+	width: 100%;
+	margin: 30px 0px;
+}
+.footer_boot {
+	width: 100%;
+	float: left;
+	margin-top: 20px;
+	margin-left: 15px;
+}
+.footer_boot p {
+	height: 30px;
+	font-size: 12px;
+}
+.footer_boot p span {
+	display: block;
+	float: left;
+	padding: 0 3px;
+	cursor: pointer;
+}
+.copyright {
+	color: #abaaaa;
+	font-size: 12px;
+	margin-left: 15px;
+	margin-top: 50px;
+	width: 100%;
+	float: left;
+	cursor: pointer;
+}
+.footer_boot p.lianjie_href span {
+	display: block;
+	float: left;
+	padding: 0 12px;
+}
+.mlddle_foot_con a:hover{
+	color :#dd0000;
+}
+/*底部*/
