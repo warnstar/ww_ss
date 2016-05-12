@@ -1,4 +1,4 @@
-<h2 class="slider_nav_title"><a>所有分类</a></h2>
+<h2 class="slider_nav_title"><a href="">所有分类</a></h2>
 <ul class="slider_nav all-sort-list">
 
 	<?php if (!empty($output['show_goods_class']) && is_array($output['show_goods_class'])) {
@@ -20,7 +20,7 @@
 										<span class="fore1"><a><a><?php echo $v['gc_name']; ?></a></a></span>
 										<?php if (!empty($v['class3']) && is_array($v['class3'])) { ?>
 											<?php foreach ($v['class3'] as $k3 => $v3) { ?>
-												<span><a><?php echo $v3['gc_name']; ?></a></span>
+												<span><a href="<?php echo urlShop('search','index',array('cate_id'=> $v3['gc_id']));?>"><?php echo $v3['gc_name']; ?></a></span>
 											<?php } ?>
 										<?php } ?>
 									</li>

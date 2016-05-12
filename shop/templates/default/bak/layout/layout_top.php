@@ -105,6 +105,8 @@
   </div>
 </div>
 <?php } ?>
+
+
 <div class="public-top-layout w">
   <div class="topbar wrapper">
     <div class="user-entry">

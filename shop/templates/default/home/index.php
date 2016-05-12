@@ -5,6 +5,7 @@
   <div class="banner_content">
     <!--广告-->
     <div class="top_banner" style="display: block;">
+      <?php //echo $output['web_html']['index_pic'];?>
       <ul class="top_slide" style="position: relative; width: 750px; height: 320px;">
         <li style="position: absolute; width: 764px; left: 0px; top: 0px; display: none;"><a
               href="javascript:void(0);" target="_blank"><img src="<?php echo SHOP_TEMPLATES_URL;?>/images/cms_01.jpg"></a></li>
