@@ -6,7 +6,7 @@
 			case 'login':
 				return "登陆";
 			default:
-				return "商城";
+				return "五维商城";
 		}
 	}
 ?>
